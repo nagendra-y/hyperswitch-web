@@ -2,8 +2,11 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
+const appHost = process.env.APP_HOST || 'localhost';
+
 let devServer = {
   contentBase: path.join(__dirname, "dist"),
+  host: appHost,
   hot: true,
   port: 9060,
   historyApiFallback: true,

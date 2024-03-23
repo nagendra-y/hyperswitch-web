@@ -3,9 +3,10 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
 const sdkEnv = process.env.sdkEnv;
+const appHost = process.env.APP_HOST || 'localhost';
 
 let backendEndPoint =
-  sdkEnv === "prod"
+ sdkEnv === "prod"
     ? "https://api.hyperswitch.io/payments"
     : sdkEnv === "sandbox"
     ? "https://sandbox.hyperswitch.io/payments"
@@ -15,6 +16,7 @@ let backendEndPoint =
 
 let devServer = {
   contentBase: path.join(__dirname, "dist"),
+  host: appHost,
   hot: true,
   port: 9050,
   historyApiFallback: true,
